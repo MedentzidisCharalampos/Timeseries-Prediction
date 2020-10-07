@@ -20,27 +20,29 @@ The dataset is splited into training and validation set at time step 1,000.
 
 1. Using dense layers:
 
-The architecture of the model is as follows:
-1. A dense layer of 10-units that takes as input the window size and activation function Relu
-2. A dense layer of 10-units  and activation function Relu
-3. A dense layer of 1-unit
+    The architecture of the model is as follows:
+    1. A dense layer of 10-units that takes as input the window size and activation function Relu
+    2. A dense layer of 10-units  and activation function Relu
+    3. A dense layer of 1-unit
 
-The model is compiles with mean squared error loss function and stochastic gradient descent optimizer with 8e-6 learning rate. 
-The model is trained for 500 epochs. The mean squared error after training is 4.4847784 
+    The model compiled with mean squared error loss function and stochastic gradient descent optimizer with 8e-6 learning rate. 
+    The model is trained for 500 epochs. The mean absolute error after training is 4.4847784 
 
 
 2. Using Recurrent Neural Networks(RNNs) 
 
 This imlpementation uses Reccurent Neural Networks (RNN). A RNN is a neural network that contains recurrent layers. These are designed to sequentially process sequences of inputs.  The full input shape when using RNN is three dimensional. The first dimension is the batch size, the second is the timestamps and the thrird is the dimensionality of the inputs at each time step. In our dataset tha dimensionality of the inputs is 1.
+The recurrent layer consists of one cell that is used repeatedly to compute the outputs. At each time step the memory cell takes the input value for that step and then caluculate the output for that step, and a state vector that is fed into the next time step. These steps will continue until we reach the end of the input dimension. This is what gives the name recurrent neual network, because the output recur due to the output of the cell, a one-step being fed back into itself to the next time step. In order the recurrent layer to output a sequence, we specify return sequences equal to true because we are going to stack two rnn layers together.
 
 The architecture of the model is as follows:
-1. A dense layer of 10-units that takes as input the window size and activation function Relu
-2. A dense layer of 10-units  and activation function Relu
-3. A dense layer of 1-unit
+1. A Lamba layer, expands the array by one dimension and input_shape = None which means that the model can take sequences of any length
+1. A Recurrent Layer that has return_sequences = True, it will output a sequence which is fed to the next layer and input_shape batch_size x timestamps = 1.
+2. A Recurrent Layer that will only output to the final step
+3. A Dense Layer of 1-unit
+4. A Lamba Layer scale the outputs by 100. The default activation function is tanH which has out puts in range [-1, 1] , since the timeseries values are in that order usually 40s, 50s e.t.c., then scalling up the outputs can help us with learning
 
-The model is compiles with mean squared error loss function and stochastic gradient descent optimizer with 8e-6 learning rate. 
-The model is trained for 500 epochs. The mean squared error after training is 4.4847784 
-
+The model compiled with Huber loss function  that's less sensitive to outliers as the data is a bit noisy and stochastic gradient descent optimizer with 5e-5 learning rate. 
+The model is trained for 400 epochs. The mean absolute error after training is 6.4141674.
 
 
 1. Using dense layers:
