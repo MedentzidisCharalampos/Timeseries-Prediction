@@ -60,10 +60,11 @@ The dataset is splited into training and validation set at time step 1,000.
     The model compiled with Huber loss function  that's less sensitive to outliers as the data is a bit noisy and stochastic gradient descent optimizer with 1e-6 learning rate. 
     The model is trained for 100 epochs. The mean absolute error after training is 5.2872233.
     
-4. Using Convolutional Neural Networks(CNNs) and Recurrent Neural Networks(RNNs):
-The Lambda Layer is removed that reshaped the input and is replaced with a Convolutional Layer of 1 dimension with 32 filters, stride of 1 and  Relu activation function.  
+4. Using Convolutional Neural Networks(CNNs) and Recurrent Neural Networks(RNNs):  
+The Lambda Layer is removed that reshaped the input and is replaced with a Convolutional Layer of 1 dimension with 32 filters, stride of 1 and  Relu activation function.    
 
      The architecture of the model is as follows:  
+     
         1. A Convolutional layer with 32 filters, kernels 5x5, stride of 1, Relu activation function and input shape of any length and dimension of the data equals to 1    
         2. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer  
         3. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer  
