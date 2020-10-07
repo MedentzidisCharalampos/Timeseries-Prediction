@@ -64,14 +64,14 @@ The dataset is splited into training and validation set at time step 1,000.
 The Lambda Layer is removed that reshaped the input and is replaced with a Convolutional Layer of 1 dimension with 32 filters, stride of 1 and  Relu activation function.
 
      The architecture of the model is as follows:
-        1. A Convolutional layer with 32 filters, kernels 5x5, stride of 1, Relu activation function and input shape of any length and dimension of the data equals to 1
-        2. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer
-        3. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer
-        4. A Dense Layer of 1-unit will give the output prediction value
-        5. A Lamba Layer scale the outputs by 100. The default activation function is tanH which has out puts in range [-1, 1] , since the timeseries values are in that order usually 40s, 50s e.t.c., then scalling up the outputs can help us with learning
+        1. A Convolutional layer with 32 filters, kernels 5x5, stride of 1, Relu activation function and input shape of any length and dimension of the data equals to 1  
+        2. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer  
+        3. A Long Short Term Memory Layer with 32 cells that is bidirectional and has return_sequences = True, it will output a sequence which is fed to the next layer  
+        4. A Dense Layer of 1-unit will give the output prediction value  
+        5. A Lamba Layer scale the outputs by 100. The default activation function is tanH which has out puts in range [-1, 1] , since the timeseries values are in that order usually 40s, 50s e.t.c., then scalling up the outputs can help us with learning  
 
-    The model compiled with Huber loss function  that's less sensitive to outliers as the data is a bit noisy and stochastic gradient descent optimizer with 1e-5 learning rate. 
-    The model is trained for 500 epochs. The mean absolute error after training is 6.209801
+    The model compiled with Huber loss function  that's less sensitive to outliers as the data is a bit noisy and stochastic gradient descent optimizer with 1e-5 learning rate.   
+    The model is trained for 500 epochs. The mean absolute error after training is 6.209801  
     
 
 
